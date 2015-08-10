@@ -1,14 +1,24 @@
-var express = require('express');
-var path = require('path');
-var favicon = require('serve-favicon');
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var express = require('express'),
+    socket_io = require('socket.io'),
+    path = require('path'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
+    cookieParser = require('cookie-parser'),
+    bodyParser = require('body-parser'),
+    app = express();
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
-var app = express();
+//SocketIO
+var io = socket_io();
+app.io = io;
+
+
+io.on('connection', function(socket) {
+   console.log('a user connected'); 
+});
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -58,3 +68,4 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
+
