@@ -10,13 +10,30 @@ var express = require('express'),
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+//mqtt
+var mqtt = require('mqtt');
+var client = mqtt.connect('mqtt://localhost');
+
+client.on('connect', function () {
+  client.subscribe('presence');
+  client.publish('presence', 'Hello mqtt');
+});
+
+client.on('message', function (topic, message) {
+  // message is Buffer
+  console.log(message.toString());
+  client.end();
+});
 //SocketIO
 var io = socket_io();
 app.io = io;
 
 
 io.on('connection', function(socket) {
-   console.log('a user connected'); 
+   console.log('a user connected');
+    socket.on('disconnect', function() {
+       console.log('user disconnected');
+    });
 });
 
 
@@ -68,4 +85,3 @@ app.use(function(err, req, res, next) {
 
 
 module.exports = app;
-
