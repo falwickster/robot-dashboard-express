@@ -4,6 +4,11 @@ block content
     br
     .jumbotron
         h1=title
+    .mqtt-result    
     script.
         var socket = io();
+        socket.on('mqtt', function(msg){
+            $("div.mqtt-result").text(msg);
+          });
+        socket.emit('subscribe', {topic: 'presence'});
     

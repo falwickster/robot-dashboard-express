@@ -9,33 +9,36 @@ var express = require('express'),
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
-
-//mqtt
+//SocketIO and mqtt requirements
 var mqtt = require('mqtt');
 var client = mqtt.connect('mqtt://localhost');
-
-client.on('connect', function () {
-  client.subscribe('presence');
-  client.publish('presence', 'Hello mqtt');
-});
-
-client.on('message', function (topic, message) {
-  // message is Buffer
-  console.log(message.toString());
-  client.end();
-});
-//SocketIO
 var io = socket_io();
 app.io = io;
 
-
+//SocketIO
 io.on('connection', function(socket) {
    console.log('a user connected');
     socket.on('disconnect', function() {
        console.log('user disconnected');
     });
+    socket.on('subscribe', function(data){
+      console.log('Subscribing to ' + data.topic);
+      client.subscribe(data.topic);
+    });
 });
 
+//mqtt
+
+client.on('connect', function () {
+  client.subscribe('presence');
+});
+
+client.on('message', function (topic, message) {
+  // message is Buffer
+  //console.log(message.toString());
+  //client.end();
+    io.emit('mqtt', message.toString());
+});
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
