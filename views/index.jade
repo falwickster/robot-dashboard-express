@@ -4,11 +4,23 @@ block content
     br
     .jumbotron
         h1=title
-    .mqtt-result    
+    #robotPanel.row
+        .mqtt-result.col-md-4
+        .mqtt-result.col-md-4
+        .mqtt-result.col-md-4
+    br    
+    #robotPanel.row
+        .mqtt-result.col-md-4
+        .mqtt-result.col-md-4
+        .mqtt-result.col-md-4
     script.
         var socket = io();
+        var receivedMsg = 0;
         socket.on('mqtt', function(msg){
             $("div.mqtt-result").text(msg);
+            receivedMsg = parseInt(msg);
+            data.setValue(3, 1, receivedMsg);
+            chart.draw(data, options);
           });
         socket.emit('subscribe', {topic: 'presence'});
-    
+      
