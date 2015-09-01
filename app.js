@@ -38,6 +38,18 @@ client.on('connect', function () {
   client.subscribe("Gripper/RotatePosition");
   client.subscribe("Gripper/Voltage");
     
+  client.subscribe("Arm/BarkCurrent");
+  client.subscribe("Arm/BarkPosition");
+  client.subscribe("Arm/LokiecCurrent");
+  client.subscribe("Arm/LokiecPosition");
+  client.subscribe("Arm/ObrotCurrent");
+  client.subscribe("Arm/ObrotPosition");   
+   
+  client.subscribe("GpsUSB/LatitudeDD");
+  client.subscribe("GpsUSB/LongitudeDD");
+  client.subscribe("GpsUSB/Track");
+  client.subscribe("GpsUSB/Speed");    
+    
   client.subscribe("Chassis/AkuMot");
   client.subscribe("Chassis/AkuEle");
 });

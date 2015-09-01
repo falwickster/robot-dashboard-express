@@ -21,18 +21,20 @@ block content
             #gripperVoltage.box.col-md-2.spacing
         #robotPanel.row
             .col-md-1
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
+            #shoulderCurrent.box.col-md-3.spacing
+            #elbowCurrent.box.col-md-4.spacing
+            #turningCurrent.box.col-md-3.spacing
         #robotPanel.row
             .col-md-1
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
-            #null.box.col-md-2.spacing
+            #shoulderPosition.box.col-md-3.spacing
+            #elbowPosition.box.col-md-4.spacing
+            #turningPosition.box.col-md-3.spacing
+        #robotPanel.row
+            .col-md-1
+            #gpsLatitude.box.col-md-2.spacing
+            #gpsLongitude.box.col-md-3.spacing
+            #gpsTrack.box.col-md-3.spacing
+            #gpsSpeed.box.col-md-2.spacing
         #robotPanel.row
             .col-md-1
             #batteryMotor.box.col-md-5.spacing
@@ -97,7 +99,36 @@ block content
              else if(msg.topic == "Gripper/Voltage") {
              $('#gripperVoltage').text(msg.payload).append('<p>Napięcie na chwytaku</p>');
              }
-             
+             else if(msg.topic == "Arm/BarkCurrent") {
+            $('#shoulderCurrent').text(msg.payload).append('<p>Prąd barku</p>');
+             } 
+             else if(msg.topic == "Arm/BarkPosition") {
+            $('#shoulderPosition').text(msg.payload).append('<p>Pozycja barku</p>');
+             }
+             else if(msg.topic == "Arm/LokiecCurrent") {
+            $('#elbowCurrent').text(msg.payload).append('<p>Prąd łokcia</p>');
+             }
+             else if(msg.topic == "Arm/LokiecPosition") {
+            $('#elbowPosition').text(msg.payload).append('<p>Pozycja łokcia</p>');
+             }
+             else if(msg.topic == "Arm/ObrotCurrent") {
+            $('#turningCurrent').text(msg.payload).append('<p>Prąd obrotu</p>');
+             }
+             else if(msg.topic == "Arm/ObrotPosition") {
+            $('#turningPosition').text(msg.payload).append('<p>Pozycja obrotu</p>');
+             }
+             else if(msg.topic == "GpsUSB/LatitudeDD") {
+            $('#gpsLatitude').text(msg.payload).append('<p>Szerokość geograficzna</p>');
+             }
+             else if(msg.topic == "GpsUSB/LongitudeDD") {
+            $('#gpsLongitude').text(msg.payload).append('<p>Długość geograficzna</p>');
+             }
+             else if(msg.topic == "GpsUSB/Track") {
+            $('#gpsTrack').text(msg.payload).append('<p>Odchylenie względem północy</p>');
+             }
+             else if(msg.topic == "GpsUSB/Speed") {
+            $('#gpsSpeed').text(msg.payload).append('<p>Szybkość z GPS</p>');
+             }
              else if(msg.topic == "Chassis/AkuMot") {
              $('#batteryMotor').text(msg.payload).append('<p>Napięcie silników');
              }
