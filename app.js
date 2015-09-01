@@ -27,14 +27,14 @@ io.on('connection', function(socket) {
 
 client.on('connect', function () {
   client.subscribe('presence');
-  
+  client.subscribe('Gripper/Alive');
+  client.subscribe('Arm/Alive');
 });
 
-client.on('message', function (topic, message) {
+client.on('message', function (topic, payload, packet) {
   // message is Buffer
-  console.log(message.toString());
-  //client.end();
-    io.emit('mqtt', message.toString());
+  console.log(topic+'='+payload);
+  io.emit('mqtt', {'topic':String(topic), 'payload':String(payload)});
 });
 
 // view engine setup

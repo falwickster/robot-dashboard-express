@@ -6,37 +6,45 @@ block content
         h1=title
     .row-centered    
         #robotPanel.row
-            #gripperAlive.mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing 
+            #gripperAlive.box.col-md-2.spacing
+            #armAlive.box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing 
         #robotPanel.row
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
         #robotPanel.row
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
         #robotPanel.row
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
-            .mqtt-result.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
+            .box.col-md-2.spacing
         #robotPanel.row
-            .mqtt-result.col-md-5.spacing
-            .mqtt-result.col-md-5.spacing
+            .box.col-md-5.spacing
+            .box.col-md-5.spacing
 
     script.
         var socket = io();
         socket.on('mqtt', function(msg){
-            $("div.mqtt-result").text(msg);
+            if(msg.topic == "Gripper/Alive") {
+                $('#gripperAlive').text(msg.payload).append('<br><p>Status chwytaka</p>');
+            }
+            else if(msg.topic == "Arm/Alive") {
+                $('#armAlive').text(msg.payload).append('<br><p>Status ramienia</p>');
+             }
+            else if(msg.topic == "presence") {
+            $("div.box").text(msg.payload);
+            }
           });
         //socket.emit('subscribe', {topic: 'presence'});
       

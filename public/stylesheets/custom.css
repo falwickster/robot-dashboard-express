@@ -16,7 +16,7 @@ a {
 .jumbotron {
   text-align: center;
 }
-.mqtt-result {
+.box {
   border-style : dashed;
   border-width: 1px;
   padding: 10px;
@@ -29,4 +29,8 @@ a {
 .row-centered {
     margin: auto;
     max-width: 1200px;
+}
+
+.box p {
+ font-size:15px;   
 }
