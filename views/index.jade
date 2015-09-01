@@ -3,42 +3,52 @@ extends layout
 block content
     br
     .jumbotron
-        h1=title
-    .row-centered    
-        #robotPanel.row
-            .col-md-1
-            #gripperAlive.box.col-md-2.spacing
-            #armAlive.box.col-md-2.spacing
-            #chassisAlive.box.col-md-2.spacing
-            #gpsAlive.box.col-md-2.spacing
-            #gpsUsbAlive.box.col-md-2.spacing 
-        #robotPanel.row
-            .col-md-1
-            #gripperCurrent.box.col-md-2.spacing
-            #moveCurrent.box.col-md-2.spacing
-            #rotateCurrent.box.col-md-2.spacing
-            #rotatePosition.box.col-md-2.spacing
-            #gripperVoltage.box.col-md-2.spacing
-        #robotPanel.row
-            .col-md-1
-            #shoulderCurrent.box.col-md-3.spacing
-            #elbowCurrent.box.col-md-4.spacing
-            #turningCurrent.box.col-md-3.spacing
-        #robotPanel.row
-            .col-md-1
-            #shoulderPosition.box.col-md-3.spacing
-            #elbowPosition.box.col-md-4.spacing
-            #turningPosition.box.col-md-3.spacing
-        #robotPanel.row
-            .col-md-1
-            #gpsLatitude.box.col-md-2.spacing
-            #gpsLongitude.box.col-md-3.spacing
-            #gpsTrack.box.col-md-3.spacing
-            #gpsSpeed.box.col-md-2.spacing
-        #robotPanel.row
-            .col-md-1
-            #batteryMotor.box.col-md-5.spacing
-            #batteryElectronics.box.col-md-5.spacing
+        h1=title  
+    .panel.panel-primary
+        .panel-heading Statusy
+        .panel-body
+            .row
+                .col-md-1
+                #gripperAlive.col-md-2.spacing
+                #armAlive.col-md-2.spacing
+                #chassisAlive.col-md-2.spacing
+                #gpsAlive.col-md-2.spacing
+                #gpsUsbAlive.col-md-2.spacing
+        .panel-heading Chwytak
+        .panel-body        
+            .row
+                .col-md-1
+                #gripperCurrent.col-md-2.spacing
+                #moveCurrent.col-md-2.spacing
+                #rotateCurrent.col-md-2.spacing
+                #rotatePosition.col-md-2.spacing
+                #gripperVoltage.col-md-2.spacing
+        .panel-heading Ramię
+        .panel-body    
+            .row
+                .col-md-1
+                #shoulderCurrent.col-md-3.spacing
+                #elbowCurrent.col-md-4.spacing
+                #turningCurrent.col-md-3.spacing
+            .row
+                .col-md-1
+                #shoulderPosition.col-md-3.spacing
+                #elbowPosition.col-md-4.spacing
+                #turningPosition.col-md-3.spacing
+        .panel-heading GPS
+        .panel-body        
+            .row
+                .col-md-1
+                #gpsLatitude.col-md-2.spacing
+                #gpsLongitude.col-md-3.spacing
+                #gpsTrack.col-md-3.spacing
+                #gpsSpeed.col-md-2.spacing
+        .panel-heading Akumulator
+        .panel-body      
+            .row
+                .col-md-1
+                #batteryMotor.col-md-5.spacing
+                #batteryElectronics.col-md-5.spacing
 
     script.
         var socket = io();
@@ -118,10 +128,10 @@ block content
             $('#turningPosition').text(msg.payload).append('<p>Pozycja obrotu</p>');
              }
              else if(msg.topic == "GpsUSB/LatitudeDD") {
-            $('#gpsLatitude').text(msg.payload).append('<p>Szerokość geograficzna</p>');
+            $('#gpsLatitude').text(msg.payload).append('&deg;<p>Szerokość geograficzna</p>');
              }
              else if(msg.topic == "GpsUSB/LongitudeDD") {
-            $('#gpsLongitude').text(msg.payload).append('<p>Długość geograficzna</p>');
+            $('#gpsLongitude').text(msg.payload).append('&deg;<p>Długość geograficzna</p>');
              }
              else if(msg.topic == "GpsUSB/Track") {
             $('#gpsTrack').text(msg.payload).append('<p>Odchylenie względem północy</p>');
