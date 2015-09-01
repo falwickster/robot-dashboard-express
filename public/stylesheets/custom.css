@@ -11,14 +11,22 @@ a {
   text-align: center;
   font-family: "Orbitron";
   font-size: 45px;
-  margin-bottom: 5px;
 }
 
 .jumbotron {
   text-align: center;
 }
-
-.col-md-4 {
+.mqtt-result {
   border-style : dashed;
   border-width: 1px;
+  padding: 10px;
+}
+
+.spacing {
+ margin: 0.2px;   
+}
+
+.row-centered {
+    margin: auto;
+    max-width: 1200px;
 }

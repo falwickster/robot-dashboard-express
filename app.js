@@ -21,16 +21,13 @@ io.on('connection', function(socket) {
     socket.on('disconnect', function() {
        console.log('user disconnected');
     });
-    socket.on('subscribe', function(data){
-      console.log('Subscribing to ' + data.topic);
-      client.subscribe(data.topic);
-    });
 });
 
 //mqtt
 
 client.on('connect', function () {
   client.subscribe('presence');
+  
 });
 
 client.on('message', function (topic, message) {

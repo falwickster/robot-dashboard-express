@@ -4,23 +4,39 @@ block content
     br
     .jumbotron
         h1=title
-    #robotPanel.row
-        .mqtt-result.col-md-4
-        .mqtt-result.col-md-4
-        .mqtt-result.col-md-4
-    br    
-    #robotPanel.row
-        .mqtt-result.col-md-4
-        .mqtt-result.col-md-4
-        .mqtt-result.col-md-4
+    .row-centered    
+        #robotPanel.row
+            #gripperAlive.mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing 
+        #robotPanel.row
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+        #robotPanel.row
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+        #robotPanel.row
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+            .mqtt-result.col-md-2.spacing
+        #robotPanel.row
+            .mqtt-result.col-md-5.spacing
+            .mqtt-result.col-md-5.spacing
+
     script.
         var socket = io();
-        var receivedMsg = 0;
         socket.on('mqtt', function(msg){
             $("div.mqtt-result").text(msg);
-            receivedMsg = parseInt(msg);
-            data.setValue(3, 1, receivedMsg);
-            chart.draw(data, options);
           });
-        socket.emit('subscribe', {topic: 'presence'});
+        //socket.emit('subscribe', {topic: 'presence'});
       
