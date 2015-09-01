@@ -34,3 +34,11 @@ a {
 .box p {
  font-size:15px;   
 }
+
+.glyphicon-ok {
+    color: green;
+}
+
+.glyphicon-remove {
+    color: red;
+}

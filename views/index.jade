@@ -6,45 +6,105 @@ block content
         h1=title
     .row-centered    
         #robotPanel.row
+            .col-md-1
             #gripperAlive.box.col-md-2.spacing
             #armAlive.box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing 
+            #chassisAlive.box.col-md-2.spacing
+            #gpsAlive.box.col-md-2.spacing
+            #gpsUsbAlive.box.col-md-2.spacing 
         #robotPanel.row
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
+            .col-md-1
+            #gripperCurrent.box.col-md-2.spacing
+            #moveCurrent.box.col-md-2.spacing
+            #rotateCurrent.box.col-md-2.spacing
+            #rotatePosition.box.col-md-2.spacing
+            #gripperVoltage.box.col-md-2.spacing
         #robotPanel.row
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
+            .col-md-1
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
         #robotPanel.row
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
-            .box.col-md-2.spacing
+            .col-md-1
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
+            #null.box.col-md-2.spacing
         #robotPanel.row
-            .box.col-md-5.spacing
-            .box.col-md-5.spacing
+            .col-md-1
+            #batteryMotor.box.col-md-5.spacing
+            #batteryElectronics.box.col-md-5.spacing
 
     script.
         var socket = io();
         socket.on('mqtt', function(msg){
             if(msg.topic == "Gripper/Alive") {
-                $('#gripperAlive').text(msg.payload).append('<br><p>Status chwytaka</p>');
+                if(msg.payload == 1) { 
+                    $('#gripperAlive').html('<span class="glyphicon glyphicon-ok"></span>')
+                } else if(msg.payload == 0) {
+                    $('#gripperAlive').html('<span class="glyphicon glyphicon-remove"></span>')
+                }
+                $('#gripperAlive').append('<br><p>Status chwytaka</p>');
             }
             else if(msg.topic == "Arm/Alive") {
-                $('#armAlive').text(msg.payload).append('<br><p>Status ramienia</p>');
+                if(msg.payload == 1) { 
+                    $('#armAlive').html('<span class="glyphicon glyphicon-ok"></span>')
+                } else if(msg.payload == 0) {
+                    $('#armAlive').html('<span class="glyphicon glyphicon-remove"></span>')
+                }
+                $('#armAlive').append('<br><p>Status ramienia</p>');
              }
-            else if(msg.topic == "presence") {
-            $("div.box").text(msg.payload);
-            }
-          });
-        //socket.emit('subscribe', {topic: 'presence'});
-      
+             else if(msg.topic == "Chassis/Alive") {
+                if(msg.payload == 1) { 
+                    $('#chassisAlive').html('<span class="glyphicon glyphicon-ok"></span>')
+                } else if(msg.payload == 0) {
+                    $('#chassisAlive').html('<span class="glyphicon glyphicon-remove"></span>')
+                }
+                $('#chassisAlive').append('<br><p>Status podwozia</p>');
+             }
+             else if(msg.topic == "Gps/Alive") {
+                if(msg.payload == 1) { 
+                    $('#gpsAlive').html('<span class="glyphicon glyphicon-ok"></span>')
+                } else if(msg.payload == 0) {
+                    $('#gpsAlive').html('<span class="glyphicon glyphicon-remove"></span>')
+                }
+                $('#gpsAlive').append('<br><p>Status GPS</p>');
+             }
+                
+             else if(msg.topic == "GpsUSB/Alive") {
+             if(msg.payload == 1) { 
+                    $('#gpsUsbAlive').html('<span class="glyphicon glyphicon-ok"></span>')
+                } else if(msg.payload == 0) {
+                    $('#gpsUsbAlive').html('<span class="glyphicon glyphicon-remove"></span>')
+                }
+                $('#gpsUsbAlive').append('<br><p>Status GPS USB</p>');
+             }
+             else if(msg.topic == "Gripper/GripperCurrent") {
+                $('#gripperCurrent').text(msg.payload).append('<p>Prąd chwytaka</p>');
+             }
+             else if(msg.topic == "Gripper/MoveCurrent") {
+                $('#moveCurrent').text(msg.payload).append('<p>Prąd nadgarstka</p>');
+             }
+             else if(msg.topic == "Gripper/RotateCurrent") {
+                $('#rotateCurrent').text(msg.payload).append('<p>Prąd obrotu chwytaka</p>');
+             }
+             else if(msg.topic == "Gripper/RotatePosition") {
+            $('#rotatePosition').text(msg.payload).append('<p>Pozycja chwytaka</p>');
+             }
+             else if(msg.topic == "Gripper/Voltage") {
+             $('#gripperVoltage').text(msg.payload).append('<p>Napięcie na chwytaku</p>');
+             }
+             
+             else if(msg.topic == "Chassis/AkuMot") {
+             $('#batteryMotor').text(msg.payload).append('<p>Napięcie silników');
+             }
+             else if(msg.topic == "Chassis/AkuEle") {
+             $('#batteryElectronics').text(msg.payload).append('<p>Napięcie elektroniki</p>');
+             }
+             else {
+                $('#robotPanel #null').text('brak danych');
+             }
+          });      

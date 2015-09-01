@@ -29,6 +29,17 @@ client.on('connect', function () {
   client.subscribe('presence');
   client.subscribe('Gripper/Alive');
   client.subscribe('Arm/Alive');
+  client.subscribe("Chassis/Alive");
+  client.subscribe("Gps/Alive");
+  client.subscribe("GpsUSB/Alive");
+  client.subscribe("Gripper/GripperCurrent");
+  client.subscribe("Gripper/MoveCurrent");
+  client.subscribe("Gripper/RotateCurrent");
+  client.subscribe("Gripper/RotatePosition");
+  client.subscribe("Gripper/Voltage");
+    
+  client.subscribe("Chassis/AkuMot");
+  client.subscribe("Chassis/AkuEle");
 });
 
 client.on('message', function (topic, payload, packet) {
