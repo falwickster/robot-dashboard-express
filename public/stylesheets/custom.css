@@ -10,6 +10,7 @@ body {
 .navbar-inverse .navbar-brand {
  color: #FFF;   
 }
+
 a {
   color: #00B7FF;
 }
@@ -21,34 +22,18 @@ a {
 #robotPanel {
   text-align: center;
   font-family: "Orbitron";
-  font-size: 45px;
+  font-size: 30px;
 }
 
-#robotPanel p {
-  font-family: serif;   
+.panel-primary > .panel-heading {
+    color: #FFFFFC;
+    background-color: #050C60;
+    border-color: #050C60;
 }
 
 .jumbotron {
   background-color: #3E78BA;
   text-align: center;
-}
-.box {
-  border-style : dashed;
-  border-width: 1px;
-  padding: 10px;
-}
-
-.spacing {
- margin: 0.2px;   
-}
-
-.row-centered {
-    margin: auto;
-    max-width: 1200px;
-}
-
-.box p {
- font-size:20px;   
 }
 
 .glyphicon-ok {
@@ -58,4 +43,3 @@ a {
 .glyphicon-remove {
     color: red;
 }
-
