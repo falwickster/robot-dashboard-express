@@ -43,3 +43,8 @@ a {
 .glyphicon-remove {
     color: red;
 }
+
+.gauge {
+    height: 60%;
+    width: 40%;
+}

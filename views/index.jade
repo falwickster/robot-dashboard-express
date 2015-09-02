@@ -22,8 +22,8 @@ block content
                 #moveCurrent.col-md-5
             .row 
                 #null.col-md-1
-                #rotateCurrent.col-md-5.spacing
-                #gripperVoltage.col-md-5.spacing
+                #rotateCurrent.col-md-5
+                #gripperVoltage.col-md-5
             .row
                 #null.col-md-4
                 #rotatePosition.col-md-2.spacing
@@ -48,11 +48,21 @@ block content
                 #gpsTrack.col-md-3.spacing
                 #gpsSpeed.col-md-2.spacing
         .panel-heading Akumulator
-        .panel-body      
+        .panel-body
             .row
-                #null.col-md-1
-                #batteryMotor.col-md-5.spacing
-                #batteryElectronics.col-md-5.spacing
+                .col-md-1
+                h3.col-md-5 Akumulator silnika
+                .col-md-1
+                h3.col-md-5 Akumulator elektroniki
+            .row
+                .col-md-1
+                #batteryMotor.progress.col-md-5                
+                    .progress-bar(role='progressbar', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100', style='width: 25%;') 25%
+                .col-md-1    
+                #batteryElectronics.progress.col-md-5
+                    .progress-bar(role='progressbar', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100', style='width: 25%;') 25%
+            .row
+                    
 
     script.
         var socket = io();
@@ -148,10 +158,12 @@ block content
                     $('#gpsSpeed').text(msg.payload).append('<p>Szybkość z GPS</p>');
                     break;
                 case "Chassis/AkuMot":
-                    $('#batteryMotor').text(msg.payload).append('<p>Napięcie silników');
-                    break;
+                    $('#batteryMotor .progress-bar').attr('aria-valuenow', msg.payload).css('width',msg.payload+"%").text(msg.payload+"%");
+                    //$('#batteryMotor').text(msg.payload).append('<p>Napięcie silników');
+                    
                 case "Chassis/AkuEle":
-                    $('#batteryElectronics').text(msg.payload).append('<p>Napięcie elektroniki</p>');
+                    $('#batteryElectronics .progress-bar').attr('aria-valuenow', msg.payload).css('width',msg.payload+"%").text(msg.payload+"%");
+                    //$('#batteryElectronics').text(msg.payload).append('<p>Napięcie elektroniki</p>');
                     break;
                     }
             });      
