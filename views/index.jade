@@ -25,15 +25,15 @@ block content
                 #rotateCurrent.gauge.col-md-5
                 #gripperVoltage.gauge.col-md-5
             .row
-                #null.col-md-4
+                #null.col-md-5
                 #rotatePosition.col-md-2.spacing
         .panel-heading Ramię
         .panel-body    
             .row
                 #null.col-md-1
-                #shoulderCurrent.col-md-3.spacing
-                #elbowCurrent.col-md-4.spacing
-                #turningCurrent.col-md-3.spacing
+                #shoulderCurrent.gauge.col-md-3.spacing
+                #elbowCurrent.gauge.col-md-4.spacing
+                #turningCurrent.gauge.col-md-3.spacing
             .row
                 #null.col-md-1
                 #shoulderPosition.col-md-3.spacing
@@ -128,19 +128,22 @@ block content
                     //$('#gripperVoltage').text(msg.payload).append('<p>Napięcie na chwytaku</p>');
                     break;
                 case "Arm/BarkCurrent":
-                    $('#shoulderCurrent').text(msg.payload).append('<p>Prąd barku</p>');
+                    shoulderCurrent.refresh(parseInt(msg.payload));
+                    //$('#shoulderCurrent').text(msg.payload).append('<p>Prąd barku</p>');
                     break;
                 case "Arm/BarkPosition":
                     $('#shoulderPosition').text(msg.payload).append('<p>Pozycja barku</p>');
                     break;
                 case "Arm/LokiecCurrent":
-                    $('#elbowCurrent').text(msg.payload).append('<p>Prąd łokcia</p>');
+                    elbowCurrent.refresh(parseInt(msg.payload));
+                    //$('#elbowCurrent').text(msg.payload).append('<p>Prąd łokcia</p>');
                     break;
                 case "Arm/LokiecPosition":
                     $('#elbowPosition').text(msg.payload).append('<p>Pozycja łokcia</p>');
                     break;
                 case "Arm/ObrotCurrent":
-                    $('#turningCurrent').text(msg.payload).append('<p>Prąd obrotu</p>');
+                    turningCurrent.refresh(parseInt(msg.payload));
+                    //$('#turningCurrent').text(msg.payload).append('<p>Prąd obrotu</p>');
                     break;
                 case "Arm/ObrotPosition":
                     $('#turningPosition').text(msg.payload).append('<p>Pozycja obrotu</p>');
