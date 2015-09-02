@@ -45,6 +45,8 @@ a {
 }
 
 .gauge {
-    height: 60%;
-    width: 40%;
-}
+        margin-top: -150px;
+        margin-bottom: -150px;
+        display: block;
+        float: left;
+    }
