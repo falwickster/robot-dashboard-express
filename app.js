@@ -54,8 +54,7 @@ client.on('connect', function () {
   client.subscribe("Chassis/AkuEle");
 });
 
-client.on('message', function (topic, payload, packet) {
-  // message is Buffer
+client.on('message', function (topic, payload) {
   console.log(topic+'='+payload);
   io.emit('mqtt', {'topic':String(topic), 'payload':String(payload)});
 });
