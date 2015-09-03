@@ -42,24 +42,34 @@ block content
         .panel-heading GPS
         .panel-body        
             .row
-                #null.col-md-1
+                #null.col-md-4
                 #gpsLatitude.col-md-2.spacing
                 #gpsLongitude.col-md-3.spacing
-                #gpsTrack.col-md-3.spacing
-                #gpsSpeed.col-md-2.spacing
-        .panel-heading Akumulator
+            .row
+                .col-md-1
+                h3.col-md-4 Odchylenie względem północy &deg;
+                .col-md-2
+                h3.col-md-4 Szybkość portu USB z GPS
+            .row
+                .col-md-1
+                #gpsTrack.progress.col-md-4
+                    .progress-bar(role='progressbar', aria-valuenow='25', aria-valuemin='-180', aria-valuemax='180', style='width: 25%;') 90&deg;
+                .col-md-2
+                #gpsSpeed.progress.col-md-4
+                    .progress-bar(role='progressbar', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100', style='width: 25%;') 25%
+        .panel-heading Akumulatory
         .panel-body
             .row
                 .col-md-1
-                h3.col-md-5 Akumulator silnika
-                .col-md-1
-                h3.col-md-5 Akumulator elektroniki
+                h3.col-md-4 Akumulator silnika
+                .col-md-2
+                h3.col-md-4 Akumulator elektroniki
             .row
                 .col-md-1
-                #batteryMotor.progress.col-md-5                
+                #batteryMotor.progress.col-md-4                
                     .progress-bar(role='progressbar', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100', style='width: 25%;') 25%
-                .col-md-1    
-                #batteryElectronics.progress.col-md-5
+                .col-md-2    
+                #batteryElectronics.progress.col-md-4
                     .progress-bar(role='progressbar', aria-valuenow='25', aria-valuemin='0', aria-valuemax='100', style='width: 25%;') 25%
             .row
                     
@@ -155,10 +165,12 @@ block content
                     $('#gpsLongitude').text(msg.payload).append('&deg;<p>Długość geograficzna</p>');
                     break;
                 case "GpsUSB/Track":
-                    $('#gpsTrack').text(msg.payload).append('<p>Odchylenie względem północy</p>');
+                    $('#gpsTrack .progress-bar').attr('aria-valuenow', msg.payload).css('width',msg.payload+"%").text(msg.payload);
+                    //$('#gpsTrack').text(msg.payload).append('<p>Odchylenie względem północy</p>');
                     break;
                 case "GpsUSB/Speed":
-                    $('#gpsSpeed').text(msg.payload).append('<p>Szybkość z GPS</p>');
+                    $('#gpsSpeed .progress-bar').attr('aria-valuenow', msg.payload).css('width',msg.payload+"%").text(msg.payload+"%");
+                    //$('#gpsSpeed').text(msg.payload).append('<p>Szybkość USB z GPS</p>');
                     break;
                 case "Chassis/AkuMot":
                     $('#batteryMotor .progress-bar').attr('aria-valuenow', msg.payload).css('width',msg.payload+"%").text(msg.payload+"%");
