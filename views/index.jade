@@ -84,6 +84,7 @@ block content
                             } else if(msg.payload == 0) {
                                 $('#gripperAlive').html('<span class="glyphicon glyphicon-remove"></span>');
                             }
+                                
                             $('#gripperAlive').append('<br><p>Status chwytaka</p>');
                     break;
                 case "Arm/Alive":
@@ -179,6 +180,6 @@ block content
                 case "Chassis/AkuEle":
                     $('#batteryElectronics .progress-bar').attr('aria-valuenow', msg.payload).css('width',msg.payload+"%").text(msg.payload+"%");
                     //$('#batteryElectronics').text(msg.payload).append('<p>Napięcie elektroniki</p>');
-                    break;
+                    break;    
                     }
             });      
