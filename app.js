@@ -11,8 +11,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 //SocketIO and mqtt requirements
 var mqtt = require('mqtt');
-var client = mqtt.connect('mqtt://localhost');
-//var client = mqtt.connect('mqtt://192.168.1.5');
+//var client = mqtt.connect('mqtt://localhost');
+var client = mqtt.connect('mqtt://192.168.1.5');
 var io = socket_io();
 app.io = io;
 
@@ -40,47 +40,19 @@ client.on('connect', function () {
         "Gripper/RotatePosition",
         "Gripper/Voltage",
         
-        "Arm/BarkCurrent",
         "Arm/BarkPosition",
-        "Arm/LokiecCurrent",
         "Arm/LokiecPosition",
-        "Arm/ObrotCurrent",
         "Arm/ObrotPosition",
         
         "GpsUSB/LatitudeDD",
         "GpsUSB/LongitudeDD",
         "GpsUSB/Track",
         "GpsUSB/Speed",
+        "COMPAS/DATA",
         
         "Chassis/AkuMot",
         "Chassis/AkuEle"
     ]);
-//  client.subscribe('Gripper/Alive');
-//  client.subscribe('Arm/Alive');
-//  client.subscribe("Chassis/Alive");
-//  client.subscribe("Gps/Alive");
-//  client.subscribe("GpsUSB/Alive");
-//    
-//  client.subscribe("Gripper/GripperCurrent");
-//  client.subscribe("Gripper/MoveCurrent");
-//  client.subscribe("Gripper/RotateCurrent");
-//  client.subscribe("Gripper/RotatePosition");
-//  client.subscribe("Gripper/Voltage");
-//    
-//  client.subscribe("Arm/BarkCurrent");
-//  client.subscribe("Arm/BarkPosition");
-//  client.subscribe("Arm/LokiecCurrent");
-//  client.subscribe("Arm/LokiecPosition");
-//  client.subscribe("Arm/ObrotCurrent");
-//  client.subscribe("Arm/ObrotPosition");   
-//   
-//  client.subscribe("GpsUSB/LatitudeDD");
-//  client.subscribe("GpsUSB/LongitudeDD");
-//  client.subscribe("GpsUSB/Track");
-//  client.subscribe("GpsUSB/Speed");    
-//    
-//  client.subscribe("Chassis/AkuMot");
-//  client.subscribe("Chassis/AkuEle");
 });
 
 client.on('message', function (topic, payload) {

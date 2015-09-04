@@ -42,67 +42,33 @@ head
             /* liczniki JustGage */
             var gripperCurrent = new JustGage({
                 id: "gripperCurrent",
-                value: 67,
+                value: 0,
                 min: 0,
-                max: 100,
-                title: "Prąd chwytaka / A",
+                max: 4094,
+                title: "Prąd chwytaka / mA",
                 relativeGaugeSize: true
             });
             var moveCurrent = new JustGage({
                 id: "moveCurrent",
-                value: 67,
+                value: 0,
                 min: 0,
-                max: 100,
-                title: "Prąd nadgarstka / A",
+                max: 4094,
+                title: "Prąd nadgarstka / mA",
                 relativeGaugeSize: true
             });
             var rotateCurrent = new JustGage({
                 id: "rotateCurrent",
-                value: 67,
+                value: 0,
                 min: 0,
-                max: 100,
-                title: "Prąd obrotu / A",
+                max: 4094,
+                title: "Prąd obrotu / mA",
                 relativeGaugeSize: true
             });
             var gripperVoltage = new JustGage({
                 id: "gripperVoltage",
-                value: 67,
+                value: 0,
                 min: 0,
-                max: 100,
+                max: 40,
                 title: "Napięcie nadgarstka / V",
                 relativeGaugeSize: true
             });
-            var shoulderCurrent = new JustGage({
-                id: "shoulderCurrent",
-                value: 67,
-                min: 0,
-                max: 100,
-                title: "Prąd barku / A",
-                relativeGaugeSize: true
-            });
-            var elbowCurrent = new JustGage({
-                id: "elbowCurrent",
-                value: 67,
-                min: 0,
-                max: 100,
-                title: "Prąd łokcia / A",
-                relativeGaugeSize: true
-            });
-            var turningCurrent = new JustGage({
-                id: "turningCurrent",
-                value: 67,
-                min: 0,
-                max: 100,
-                title: "Prąd obrotu / A",
-                relativeGaugeSize: true
-            });
-            /* wykresy Chartist */
-//            var gpsSpeed = new Chartist.Line('#gpsSpeed', {
-//                labels: [1, 2, 3, 4, 5, 6, 7, 8],
-//                series: [
-//                    []
-//                    ]
-//                }, {
-//                low: 0,
-//                showArea: true
-//                });
