@@ -11,8 +11,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 //SocketIO and mqtt requirements
 var mqtt = require('mqtt');
-//var client = mqtt.connect('mqtt://localhost');
-var client = mqtt.connect('mqtt://192.168.1.5');
+var client = mqtt.connect('mqtt://localhost');
+//var client = mqtt.connect('mqtt://192.168.1.5');
 var io = socket_io();
 app.io = io;
 
